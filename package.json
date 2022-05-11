@@ -1,0 +1,38 @@
+{
+  "name": "near.monorepo",
+  "version": "1.0.0",
+  "description": "Near Contract and React Monorepo",
+  "private": true,
+  "scripts": {
+    "start": "yarn workspace @near/web dev",
+    "dev:web": "yarn workspace @near/web dev",
+    "contract:tests": "yarn workspace @near/contracts test",
+    "prestart": "yarn workspace @near/contracts prestart"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/tailwindcss",
+      "**/tailwindcss/**",
+      "**/postcss",
+      "**/postcss/**",
+      "**/autoprefixer",
+      "**/autoprefixer/**"
+    ]
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^16.0.1",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@types/jest": "^27.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "eslint": "^8.14.0",
+    "eslint-plugin-react": "^7.29.4",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.4",
+    "nodemon": "^2.0.15"
+  }
+}

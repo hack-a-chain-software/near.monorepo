@@ -1,0 +1,30 @@
+{
+  "name": "@near/contracts",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "main": "lib/index.ts",
+  "scripts": {
+    "build:contract": "node contract/compile.js",
+    "build:contract:debug": "node contract/compile.js --debug",
+    "dev:deploy:contract": "near dev-deploy",
+    "deploy:contract": "near deploy",
+    "deploy": "npm run build:contract && npm run deploy:contract",
+    "prestart": "npm run build:contract:debug && npm run dev:deploy:contract",
+    "dev": "nodemon --watch contract/src -e rs --exec \"npm run start\"",
+    "test:rust": "npm run build:contract:debug && cd contract && cargo test -- --nocapture && cd ..",
+    "test:lib": "npm run build:contract:debug && jest"
+  },
+  "devDependencies": {
+    "env-cmd": "~10.1.0",
+    "jest": "~26.6.2",
+    "jest-environment-node": "~26.6.2",
+    "near-cli": "~2.1.1",
+    "nodemon": "~2.0.3",
+    "shelljs": "~0.8.4"
+  },
+  "dependencies": {
+    "near-api-js": "~0.43.1",
+    "@near/ts": "*",
+    "regenerator-runtime": "~0.13.5"
+  }
+}
