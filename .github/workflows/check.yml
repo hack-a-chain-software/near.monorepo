@@ -13,22 +13,25 @@ jobs:
           source $HOME/.cargo/env
           rustup component add rustfmt
 
-      - name: Get yarn cache
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+      # - name: Get yarn cache
+      #   id: yarn-cache-dir-path
+      #   run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+      # - uses: actions/cache@v2
+      #   id: yarn-cache
+      #   with:
+      #     path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-yarn-
 
-      - name: Dependencies Installation
-        uses: borales/actions-yarn/@v2.0.0
-        with:
-          cmd: install --ignore-engines
+      # - name: Dependencies Installation
+      #   uses: borales/actions-yarn/@v2.0.0
+      #   with:
+      #     cmd: install --ignore-engines
+
+      - name: Which Cargo
+        run: which cargo
 
       - name: Contract integration tests
         uses: borales/actions-yarn/@v2.0.0
