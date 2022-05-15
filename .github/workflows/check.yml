@@ -7,7 +7,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: raftario/setup-rust-action@v1
+      - name: Install Rust
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+          source $HOME/.cargo/env
+          rustup component add rustfmt
 
       - name: Get yarn cache
         id: yarn-cache-dir-path
@@ -25,17 +29,6 @@ jobs:
         uses: borales/actions-yarn/@v2.0.0
         with:
           cmd: install --ignore-engines
-
-      - name: Install Rust
-        run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-          source $HOME/.cargo/env
-          rustup component add rustfmt
-
-      - name: Contract Unit Rust Tests
-        uses: borales/actions-yarn/@v2.0.0
-        with:
-          cmd: contract:cargo:tests
 
       - name: Contract integration tests
         uses: borales/actions-yarn/@v2.0.0
