@@ -19,9 +19,6 @@ jobs:
       - name: Installing Dependencies
         run: yarn
 
-      - name: Contract Build
-        run: yarn contract:build
-
       - name: Rust Tests
         run: yarn contract:cargo:tests
 
