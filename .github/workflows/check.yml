@@ -5,7 +5,7 @@ jobs:
   check_build_and_tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.0.0
 
       - name: Install Rust
         run: |
@@ -13,38 +13,21 @@ jobs:
           source $HOME/.cargo/env
           rustup component add rustfmt
 
-      # - name: Get yarn cache
-      #   id: yarn-cache-dir-path
-      #   run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Install Yarn Globally
+        run: npm install -g yarn
+      
+      - name: Installing Dependencies
+        run: yarn
 
-      # - uses: actions/cache@v2
-      #   id: yarn-cache
-      #   with:
-      #     path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-yarn-
+      - name: Contract Build
+        run: yarn contract:build
 
-      # - name: Dependencies Installation
-      #   uses: borales/actions-yarn/@v2.0.0
-      #   with:
-      #     cmd: install --ignore-engines
+      - name: Rust Tests
+        run: yarn contract:cargo:tests
 
-      - name: Which Cargo
-        run: which cargo
-
-      - name: Contract integration tests
-        uses: borales/actions-yarn/@v2.0.0
-        with:
-          cmd: contract:lib:tests
-
-      - name: Contract Rust Build 
-        uses: borales/actions-yarn/@v2.0.0
-        with:
-          cmd: contract:build
-  
-      - name: Dapp Build
-        uses: borales/actions-yarn/@v2.0.0
-        with:
-          cmd: web:build
+      - name: Lib Tests
+        run: yarn contract:lib:tests
+      
+      - name: Web Build
+        run: yarn web:build
 
