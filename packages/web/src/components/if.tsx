@@ -1,13 +1,13 @@
 type Props = {
   condition: boolean;
   children: React.ReactNode;
-  fallback?: JSX.Element;
+  fallback?: React.ReactNode;
 };
 
-export function If({
+export const If: React.FC<Props> = ({
   children,
-  fallback = <div />,
   condition,
-}: Props): JSX.Element {
-  return condition ? children : fallback;
-}
+  fallback = null,
+}) => {
+  return <>{condition ? children : fallback || null}</>;
+};
