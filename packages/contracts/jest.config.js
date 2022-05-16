@@ -6,10 +6,10 @@ module.exports = {
   verbose: true,
   automock: false,
   collectCoverage: true,
+  testTimeout: 20000,
   transform: {
     ...tsjPreset.transform,
   },
-  testEnvironment: "near-cli/test_environment",
   testPathIgnorePatterns: ["<rootDir>/contract/", "<rootDir>/node_modules/"],
   modulePathIgnorePatterns: ["<rootDir>/dist/"],
   testMatch: ["**/*.spec.(ts|tsx)"],
