@@ -10,7 +10,6 @@ module.exports = {
   transform: {
     ...tsjPreset.transform,
   },
-  testEnvironment: "near-cli/test_environment",
   testPathIgnorePatterns: ["<rootDir>/contract/", "<rootDir>/node_modules/"],
   modulePathIgnorePatterns: ["<rootDir>/dist/"],
   testMatch: ["**/*.spec.(ts|tsx)"],
@@ -18,3 +17,4 @@ module.exports = {
   collectCoverageFrom: ["src/**/*.{ts|tsx}", "src/**/{!(index),}.ts"],
   moduleDirectories: ["node_modules", "<rootDir>"],
 };
+e;
