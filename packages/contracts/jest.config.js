@@ -17,4 +17,3 @@ module.exports = {
   collectCoverageFrom: ["src/**/*.{ts|tsx}", "src/**/{!(index),}.ts"],
   moduleDirectories: ["node_modules", "<rootDir>"],
 };
-e;
