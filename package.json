@@ -10,7 +10,18 @@
     "web:build": "yarn workspace @near/web build",
     "contract:build": "yarn workspace @near/contracts build:contract",
     "contract:cargo:tests": "yarn workspace @near/contracts test:rust",
-    "contract:lib:tests": "yarn workspace @near/contracts test:lib"
+    "contract:lib:tests": "yarn workspace @near/contracts test:lib",
+    "postinstall": "yarn husky install"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn prettier --config ./.prettierrc.js --write",
+      "git add ."
+    ],
+    "*.{js,jsx}": [
+      "yarn prettier --config ./.prettierrc.js --write",
+      "git add ."
+    ]
   },
   "workspaces": {
     "packages": [
@@ -32,10 +43,11 @@
     "@types/jest": "^27.5.0",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
-    "eslint": "^8.14.0",
+    "eslint": "^8.15.0",
     "eslint-plugin-react": "^7.29.4",
-    "husky": "^7.0.4",
+    "husky": "^8.0.1",
     "lint-staged": "^12.1.4",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.2"
   }
 }
