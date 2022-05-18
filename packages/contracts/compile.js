@@ -36,7 +36,6 @@ const { code } = sh.exec(buildCmd)
 
 const cargoFile = require('toml').parse(require('fs').readFileSync('./Cargo.toml', 'utf-8'))
 const contracts = cargoFile.workspace.members
-console.log(cargoFile.workspace.members)
 
 // Assuming this is compiled from the root project directory, link the compiled
 // contract to the `out` folder –
