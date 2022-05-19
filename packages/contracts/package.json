@@ -4,14 +4,14 @@
   "license": "UNLICENSED",
   "main": "lib/index.ts",
   "scripts": {
-    "build:contract": "node contract/compile.js",
-    "build:contract:debug": "node contract/compile.js --debug",
+    "build:contract": "node compile.js",
+    "build:contract:debug": "node compile.js --debug",
     "dev:deploy:contract": "near dev-deploy",
     "deploy:contract": "near deploy",
     "deploy": "npm run build:contract && npm run deploy:contract",
     "prestart": "npm run build:contract:debug && npm run dev:deploy:contract",
     "dev": "nodemon --watch contract/src -e rs --exec \"npm run start\"",
-    "test:rust": "npm run build:contract:debug && cd contract && cargo test -- --nocapture && cd ..",
+    "test:rust": "npm run build:contract:debug && cargo test -- --nocapture",
     "test:lib": "npm run build:contract:debug && jest"
   },
   "devDependencies": {
@@ -29,6 +29,7 @@
     "@types/uuid": "^8.3.4",
     "near-api-js": "~0.43.1",
     "regenerator-runtime": "~0.13.5",
+    "toml": "^3.0.0",
     "uuid": "^8.3.2"
   }
 }

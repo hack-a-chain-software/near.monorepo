@@ -34,19 +34,26 @@ const buildCmd = debug
 // Execute the build command, storing exit code for later use
 const { code } = sh.exec(buildCmd)
 
+const cargoFile = require('toml').parse(require('fs').readFileSync('./Cargo.toml', 'utf-8'))
+const contracts = cargoFile.workspace.members
+
 // Assuming this is compiled from the root project directory, link the compiled
 // contract to the `out` folder –
 // When running commands like `near deploy`, near-cli looks for a contract at
 // <CURRENT_DIRECTORY>/out/main.wasm
-if (code === 0 && calledFromDir !== __dirname) {
+if (code === 0) {
   const linkDir = `${calledFromDir}/out`
-  const link = `${calledFromDir}/out/main.wasm`
-  const packageName = require('fs').readFileSync(`${__dirname}/Cargo.toml`).toString().match(/name = "([^"]+)"/)[1]
-  const outFile = `./target/wasm32-unknown-unknown/${debug ? 'debug' : 'release'}/${packageName}.wasm`
   sh.mkdir('-p', linkDir)
-  sh.rm('-f', link)
-  //fixes #831: copy-update instead of linking .- sometimes sh.ln does not work on Windows
-  sh.cp('-u',outFile,link)
+
+  for (let member of contracts) {
+    const memberName = member.split("/")[1]
+    const link = `${calledFromDir}/out/${memberName}.wasm`
+    const outFile = `./target/wasm32-unknown-unknown/${debug ? 'debug' : 'release'}/${memberName}.wasm`
+    sh.rm('-f', link)
+    //fixes #831: copy-update instead of linking .- sometimes sh.ln does not work on Windows
+    sh.cp('-u',outFile,link)
+  }
+  
 }
 
 // exit script with the same code as the build command
