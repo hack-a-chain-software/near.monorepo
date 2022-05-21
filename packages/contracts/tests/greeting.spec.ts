@@ -1,18 +1,34 @@
 import "jest";
-import { Account, connect, Contract, KeyPair } from "near-api-js";
+import fs from "fs";
+import { Account, connect, Contract, KeyPair, Near } from "near-api-js";
 import { UrlAccountCreator } from "near-api-js/lib/account_creator";
 import { InMemoryKeyStore } from "near-api-js/lib/key_stores";
+import { NearConfig } from "near-api-js/lib/near";
 import { v4 } from "uuid";
 import { GreetingContract } from "../lib";
 
-const config = {
+const CONTRACTS_PATH = "../out/";
+
+const config: NearConfig = {
   networkId: "testnet",
   nodeUrl: "https://rpc.testnet.near.org",
-  contractName: "dev-1652055476064-95220052886384",
   walletUrl: "https://wallet.testnet.near.org",
   helperUrl: "https://helper.testnet.near.org",
-  explorerUrl: "https://explorer.testnet.near.org",
 };
+
+const createTestAccount = async (params: {near: Near, config: NearConfig, keyStore: InMemoryKeyStore}): Promise<Account> => {
+    const UrlCreator = new UrlAccountCreator(params.near.connection, params.config.helperUrl!);
+
+    const accountId = `${v4()}.testnet`;
+    const randomKey = KeyPair.fromRandom("ed25519");
+
+    await UrlCreator.createAccount(accountId, randomKey.getPublicKey());
+
+    params.keyStore.setKey(config.networkId, accountId, randomKey);
+
+    const account = await params.near.account(accountId);
+    return account;
+}
 
 describe("Greeting Contract Tests", () => {
   let contract: GreetingContract;
@@ -24,19 +40,14 @@ describe("Greeting Contract Tests", () => {
 
     const near = await connect({ ...config, keyStore });
 
-    const UrlCreator = new UrlAccountCreator(near.connection, config.helperUrl);
+    const contractAccount = await createTestAccount({near, config, keyStore});
+    const account = await createTestAccount({near, config, keyStore});
 
-    const accountId = `${v4()}.testnet`;
-    const randomKey = await KeyPair.fromRandom("ed25519");
+    await contractAccount.deployContract(fs.readFileSync(CONTRACTS_PATH + "contract.wasm"));
 
-    await UrlCreator.createAccount(accountId, randomKey.getPublicKey());
-
-    keyStore.setKey(config.networkId, accountId, randomKey);
-
-    account = await near.account(accountId);
-
-    contract = await new GreetingContract(
-      new Contract(account, config.contractName, {
+    //change contract config here to contracts in the project
+    contract = new GreetingContract(
+      new Contract(account, contractAccount.accountId, {
         viewMethods: ["get_greeting"],
         changeMethods: ["set_greeting"],
       })
