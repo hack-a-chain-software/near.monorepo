@@ -1,13 +1,12 @@
 import "jest";
 import fs from "fs";
+import path from "path";
 import { Account, connect, Contract, KeyPair, Near } from "near-api-js";
 import { UrlAccountCreator } from "near-api-js/lib/account_creator";
 import { InMemoryKeyStore } from "near-api-js/lib/key_stores";
 import { NearConfig } from "near-api-js/lib/near";
 import { v4 } from "uuid";
 import { GreetingContract } from "../lib";
-
-const CONTRACTS_PATH = "../out/";
 
 const config: NearConfig = {
   networkId: "testnet",
@@ -41,9 +40,9 @@ describe("Greeting Contract Tests", () => {
     const near = await connect({ ...config, keyStore });
 
     const contractAccount = await createTestAccount({near, config, keyStore});
-    const account = await createTestAccount({near, config, keyStore});
+    account = await createTestAccount({near, config, keyStore});
 
-    await contractAccount.deployContract(fs.readFileSync(CONTRACTS_PATH + "contract.wasm"));
+    await contractAccount.deployContract(fs.readFileSync(path.resolve(__dirname, "../out/contract.wasm")));
 
     //change contract config here to contracts in the project
     contract = new GreetingContract(
