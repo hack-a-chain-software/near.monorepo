@@ -6,7 +6,7 @@ module.exports = {
   verbose: true,
   automock: false,
   collectCoverage: true,
-  testTimeout: 20000,
+  testTimeout: 50000,
   transform: {
     ...tsjPreset.transform,
   },
