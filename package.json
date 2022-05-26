@@ -21,7 +21,16 @@
     "*.{js,jsx}": [
       "yarn prettier --config ./.prettierrc.js --write",
       "git add ."
+    ],
+    "*.rs": [
+      "sh ./format_rust.sh",
+      "git add ."
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
   },
   "workspaces": {
     "packages": [
