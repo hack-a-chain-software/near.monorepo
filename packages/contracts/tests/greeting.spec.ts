@@ -1,78 +1,70 @@
-import "jest";
-import fs from "fs";
-import path from "path";
-import { Account, connect, Contract, KeyPair, Near } from "near-api-js";
-import { UrlAccountCreator } from "near-api-js/lib/account_creator";
-import { InMemoryKeyStore } from "near-api-js/lib/key_stores";
-import { NearConfig } from "near-api-js/lib/near";
-import { v4 } from "uuid";
-import { GreetingContract } from "../lib";
+import { Worker, NearAccount } from "near-workspaces";
 
-const config: NearConfig = {
-  networkId: "testnet",
-  nodeUrl: "https://rpc.testnet.near.org",
-  walletUrl: "https://wallet.testnet.near.org",
-  helperUrl: "https://helper.testnet.near.org",
-};
+describe("Greeting Contract Integration Tests", () => {
+  let worker: Worker;
+  let root: NearAccount;
 
-const createTestAccount = async (params: {near: Near, config: NearConfig, keyStore: InMemoryKeyStore}): Promise<Account> => {
-    const UrlCreator = new UrlAccountCreator(params.near.connection, params.config.helperUrl!);
+  let mike: NearAccount;
+  let john: NearAccount;
 
-    const accountId = `${v4()}.testnet`;
-    const randomKey = KeyPair.fromRandom("ed25519");
+  let greetingContractAccount: NearAccount;
 
-    await UrlCreator.createAccount(accountId, randomKey.getPublicKey());
-
-    params.keyStore.setKey(config.networkId, accountId, randomKey);
-
-    const account = await params.near.account(accountId);
-    return account;
-}
-
-describe("Greeting Contract Tests", () => {
-  let contract: GreetingContract;
-  let account: Account;
-
-  /** @description - Runs Before Everything and initializes the near instances */
   beforeAll(async () => {
-    const keyStore = new InMemoryKeyStore();
+    console.log("Before all trigerred");
+    worker = await Worker.init();
 
-    const near = await connect({ ...config, keyStore });
+    root = worker.rootAccount;
 
-    const contractAccount = await createTestAccount({near, config, keyStore});
-    account = await createTestAccount({near, config, keyStore});
+    mike = await root.createAccount("mike");
+    john = await root.createAccount("john");
 
-    await contractAccount.deployContract(fs.readFileSync(path.resolve(__dirname, "../out/contract.wasm")));
+    console.log("Accounts", mike, john);
 
-    contract = new GreetingContract(
-      new Contract(account, contractAccount.accountId, {
-        viewMethods: ["get_greeting"],
-        changeMethods: ["set_greeting"],
-      })
+    greetingContractAccount = await root.createAndDeploy(
+      "greeting",
+      __dirname + "/../out/contract.wasm"
     );
+
+    console.log("All accounts have been created");
   });
 
-  /** @description - Gets the current greeting from the smart contract and checks if it goes okay */
-  it("should get the greeting from the contract using the `get_greeting` method", async () => {
-    // Gets the current message for that account id on the contract
-    const message = await contract.getGreeting({
-      account_id: account.accountId,
-    });
-
-
-    expect(message).toEqual("Hello");
+  afterAll(async () => {
+    await worker.tearDown();
   });
 
-  it("should change the greeting from the contract using the `set_greeting` method", async () => {
-    // Gets the current message for that account id on the contract
-    await contract.updateGreeting({
-      message: "Whats Up Darling!",
+  it('should get the "Hello" message as default from the contract', async () => {
+    const message = await greetingContractAccount.view("get_greeting", {
+      account_id: john.accountId,
     });
 
-    const message = await contract.getGreeting({
-      account_id: account.accountId,
+    expect(message).toBe("Hello");
+  });
+
+  it(`should modify the john's message to "Hello John"`, async () => {
+    await john.call(greetingContractAccount.accountId, "set_greeting", {
+      message: "Hello John",
     });
 
-    expect(message).toEqual("Whats Up Darling!");
+    const message = await greetingContractAccount.view("get_greeting", {
+      account_id: john.accountId,
+    });
+
+    expect(message).toBe("Hello John");
+  });
+
+  it('should modify only one user data lets change the mike message to "Hello Mike" and john message should remain the same', async () => {
+    await mike.call(greetingContractAccount.accountId, "set_greeting", {
+      message: "Hello Mike",
+    });
+
+    const john_message = await greetingContractAccount.view("get_greeting", {
+      account_id: john.accountId,
+    });
+    const mike_message = await greetingContractAccount.view("get_greeting", {
+      account_id: mike.accountId,
+    });
+
+    expect(john_message).toBe("Hello John");
+    expect(mike_message).toBe("Hello Mike");
   });
 });

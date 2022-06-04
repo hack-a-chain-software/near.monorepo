@@ -15,11 +15,11 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn prettier --config ./.prettierrc.js --write",
+      "yarn prettier --config .prettierrc --write",
       "git add ."
     ],
     "*.{js,jsx}": [
-      "yarn prettier --config ./.prettierrc.js --write",
+      "yarn prettier --config .prettierrc --write",
       "git add ."
     ],
     "*.rs": [
