@@ -1,6 +1,6 @@
 import { Worker, NearAccount } from "near-workspaces";
 
-describe("Greeting Contract Integration Tests",  () => {
+describe("Greeting Contract Integration Tests", () => {
   let worker: Worker;
   let root: NearAccount;
 
@@ -26,6 +26,10 @@ describe("Greeting Contract Integration Tests",  () => {
     );
 
     console.log("All accounts have been created");
+  });
+
+  afterAll(async () => {
+    await worker.tearDown();
   });
 
   it('should get the "Hello" message as default from the contract', async () => {
