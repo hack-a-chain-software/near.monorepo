@@ -1,10 +1,10 @@
-import { useNearUser, useNearWallet } from "react-near";
-import { contractName } from "../env/contract";
-import { Button } from "./button";
 import { If } from "./if";
+import { Button } from "./button";
+import { useNearWalletSelector } from "../context/near";
 
 export function Header() {
-  const user = useNearUser(contractName);
+  const { signOut, accountId } = useNearWalletSelector();
+
   return (
     <div className="w-screen h-[80px] flex items-center justify-center">
       <div className="flex px-5 items-center max-w-[1400px] w-[100%] justify-between">
@@ -22,8 +22,8 @@ export function Header() {
           <path d="m49.3776 4h-7.4444c-.1334 0-.2223.08889-.2223.22222 0 .88889.7334 1.62222 1.6223 1.62222h6.0444c.0889 0 .1778-.06666.1778-.17777v-1.51111c-.0222-.08889-.0889-.15556-.1778-.15556zm0 10.1556h-5.5555c-.0889 0-.1778-.0667-.1778-.1778v-3c0-.0889.0666-.1778.1778-.1778h5.1333c.0889 0 .1778-.0667.1778-.1778v-1.51109c0-.08889-.0667-.17778-.1778-.17778h-7c-.1333 0-.2445.11111-.2445.24445v6.55552c0 .1334.1112.2445.2445.2445h7.4222c.0889 0 .1778-.0667.1778-.1778v-1.5111c-.0222-.0667-.0889-.1333-.1778-.1333z"></path>
           <path d="m16.0444 1.02222-4.1777 6.2c-.2889.42222.2666.93334.6666.57778l4.1111-3.57778c.1112-.08889.2667-.02222.2667.13334v11.17774c0 .1556-.2.2223-.2889.1111l-12.44442-14.888844c-.4-.488889-.97778-.755556-1.62222-.755556h-.44445c-1.155554 0-2.11111.955556-2.11111 2.13333v15.73337c0 1.1777.955556 2.1333 2.13333 2.1333.73334 0 1.42223-.3778 1.82223-1.0222l4.17777-6.2c.28889-.4222-.26666-.9334-.66666-.5778l-4.11111 3.5556c-.11112.0888-.26667.0222-.26667-.1334v-11.15553c0-.15556.2-.22223.28889-.11111l12.44442 14.88884c.4.4889 1 .7556 1.6222.7556h.4445c1.1778 0 2.1333-.9556 2.1333-2.1333v-15.73337c-.0222-1.177774-.9778-2.13333-2.1555-2.13333-.7334 0-1.4223.377778-1.8223 1.02222z"></path>
         </svg>
-        <If condition={!!user.isConnected}>
-          <Button onClick={user.disconnect}>
+        <If condition={!!accountId}>
+          <Button onClick={() => signOut()}>
             Disconnect Wallet
             <svg
               width="25"

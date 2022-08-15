@@ -523,6 +523,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@headlessui/react@^1.6.6":
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.6.6.tgz#3073c066b85535c9d28783da0a4d9288b5354d0c"
+  integrity sha512-MFJtmj9Xh/hhBMhLccGbBoSk+sk61BlP6sJe4uQcVMtXZhCgGqd2GyIQzzmsdPdTEWGSF434CBi8mnhR6um46Q==
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.5.tgz#2cbaf9a89460da24b5ca6531b8bbfc23e1df50c7"
@@ -898,6 +903,57 @@
   version "6.10.0"
   resolved "https://registry.yarnpkg.com/@ledgerhq/logs/-/logs-6.10.0.tgz#c012c1ecc1a0e53d50e6af381618dca5268461c1"
   integrity sha512-lLseUPEhSFUXYTKj6q7s2O3s2vW2ebgA11vMAlKodXGf5AFw4zUoEbTz9CoFOC9jS6xY4Qr8BmRnxP/odT4Uuw==
+
+"@near-wallet-selector/core@5.0.3", "@near-wallet-selector/core@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/core/-/core-5.0.3.tgz#f35b0d5c232d1efc2e1f2bb3ba6d2910a96140b7"
+  integrity sha512-RB2qhBs0oYfxx+ddJASBYJ7l0QG+bzNp29X+5hpFqTg+0iQN8sZnfU6bHUQlfBj9ky65RDX/A4rraG59BvB/Mg==
+  dependencies:
+    near-api-js "0.44.2"
+    rxjs "~7.4.0"
+
+"@near-wallet-selector/my-near-wallet@5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/my-near-wallet/-/my-near-wallet-5.0.3.tgz#6bdbd4cada60bdd23f838b09858607199708b082"
+  integrity sha512-P21KyrE3TZTNEmNujMbBC1Onf8+MrGBbqOd2NKAPid6i0juE72KBxIkQPqzeocpV66IQBx97Ab6m/p5x23CgoQ==
+  dependencies:
+    "@near-wallet-selector/core" "5.0.3"
+    "@near-wallet-selector/wallet-utils" "5.0.3"
+    bn.js "^5.2.0"
+    near-api-js "0.44.2"
+    rxjs "~7.4.0"
+
+"@near-wallet-selector/near-wallet@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/near-wallet/-/near-wallet-5.0.3.tgz#70c1d9acf6a1fef013edf91687ea9118100d8725"
+  integrity sha512-6FtwDr023F3e5YXMN3eBiP+Zt3x6DRj2O+5BquXwSkvOl1XiTMQr5DNlVTk39bn1G4zETFW3KQ0S7B6mRA4JOg==
+  dependencies:
+    "@near-wallet-selector/core" "5.0.3"
+    "@near-wallet-selector/my-near-wallet" "5.0.3"
+    "@near-wallet-selector/wallet-utils" "5.0.3"
+    bn.js "^5.2.0"
+    near-api-js "0.44.2"
+    rxjs "~7.4.0"
+
+"@near-wallet-selector/sender@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/sender/-/sender-5.0.3.tgz#6d25caa7962341d3d77340c5f8c3de082f9e0895"
+  integrity sha512-DsdNGKo45UbjuZGrvyNNdFkXqt0D5q85G4Xjiq5z1j7trzpbLeknExnz60w/fTaUTUUtcUz9HMh/30+x1zKCcg==
+  dependencies:
+    "@near-wallet-selector/core" "5.0.3"
+    is-mobile "^3.0.0"
+    near-api-js "0.44.2"
+    rxjs "~7.4.0"
+
+"@near-wallet-selector/wallet-utils@5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@near-wallet-selector/wallet-utils/-/wallet-utils-5.0.3.tgz#4303ed7209277af065099670e8db62ff1974ad40"
+  integrity sha512-NDQ7dEFXrR6M3B+1A7LAs6VbL3zMmu582syQg577b7sMvuZS+L7LMrNlUhx0+7YYxVpb9POqqB/7ULynbfTZ4g==
+  dependencies:
+    "@near-wallet-selector/core" "5.0.3"
+    bn.js "^5.2.0"
+    near-api-js "0.44.2"
+    rxjs "~7.4.0"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -3613,6 +3669,11 @@ is-installed-globally@^0.4.0:
     global-dirs "^3.0.0"
     is-path-inside "^3.0.2"
 
+is-mobile@^3.0.0:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/is-mobile/-/is-mobile-3.1.1.tgz#3b9e48f40068e4ea2da411f5009779844ce8d6aa"
+  integrity sha512-RRoXXR2HNFxNkUnxtaBdGBXtFlUMFa06S0NUKf/LCF+MuGLu13gi9iBCkoEmc6+rpXuwi5Mso5V8Zf7mNynMBQ==
+
 is-negative-zero@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/is-negative-zero/-/is-negative-zero-2.0.2.tgz#7bf6f03a28003b8b3965de3ac26f664d765f3150"
@@ -4721,6 +4782,23 @@ ncp@^2.0.0:
   resolved "https://registry.yarnpkg.com/ncp/-/ncp-2.0.0.tgz#195a21d6c46e361d2fb1281ba38b91e9df7bdbb3"
   integrity sha1-GVoh1sRuNh0vsSgbo4uR6d9727M=
 
+near-api-js@0.44.2, near-api-js@^0.44.1, near-api-js@^0.44.2:
+  version "0.44.2"
+  resolved "https://registry.yarnpkg.com/near-api-js/-/near-api-js-0.44.2.tgz#e451f68f2c56bd885c7b918db5818a3e6e9423d0"
+  integrity sha512-eMnc4V+geggapEUa3nU2p8HSHn/njtloI4P2mceHQWO8vDE1NGpnAw8FuTBrLmXSgIv9m6oocgFc9t3VNf5zwg==
+  dependencies:
+    bn.js "5.2.0"
+    borsh "^0.6.0"
+    bs58 "^4.0.0"
+    depd "^2.0.0"
+    error-polyfill "^0.1.3"
+    http-errors "^1.7.2"
+    js-sha256 "^0.9.0"
+    mustache "^4.0.0"
+    node-fetch "^2.6.1"
+    text-encoding-utf-8 "^1.0.2"
+    tweetnacl "^1.0.1"
+
 near-api-js@^0.42.0:
   version "0.42.0"
   resolved "https://registry.yarnpkg.com/near-api-js/-/near-api-js-0.42.0.tgz#1f773791e930a349be65b866752bbae67df4388d"
@@ -4731,23 +4809,6 @@ near-api-js@^0.42.0:
     bs58 "^4.0.0"
     depd "^2.0.0"
     error-polyfill "^0.1.2"
-    http-errors "^1.7.2"
-    js-sha256 "^0.9.0"
-    mustache "^4.0.0"
-    node-fetch "^2.6.1"
-    text-encoding-utf-8 "^1.0.2"
-    tweetnacl "^1.0.1"
-
-near-api-js@^0.44.1, near-api-js@^0.44.2:
-  version "0.44.2"
-  resolved "https://registry.yarnpkg.com/near-api-js/-/near-api-js-0.44.2.tgz#e451f68f2c56bd885c7b918db5818a3e6e9423d0"
-  integrity sha512-eMnc4V+geggapEUa3nU2p8HSHn/njtloI4P2mceHQWO8vDE1NGpnAw8FuTBrLmXSgIv9m6oocgFc9t3VNf5zwg==
-  dependencies:
-    bn.js "5.2.0"
-    borsh "^0.6.0"
-    bs58 "^4.0.0"
-    depd "^2.0.0"
-    error-polyfill "^0.1.3"
     http-errors "^1.7.2"
     js-sha256 "^0.9.0"
     mustache "^4.0.0"
@@ -5781,6 +5842,13 @@ rxjs@^7.5.5:
   dependencies:
     tslib "^2.1.0"
 
+rxjs@~7.4.0:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.4.0.tgz#a12a44d7eebf016f5ff2441b87f28c9a51cebc68"
+  integrity sha512-7SQDi7xeTMCJpqViXh8gL/lebcwlp3d831F05+9B44A4B0WfsEwUQHR64gsH1kvJ+Ep/J9K2+n1hVl1CsGN23w==
+  dependencies:
+    tslib "~2.1.0"
+
 safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.2, safe-buffer@^5.2.0, safe-buffer@~5.2.0:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
@@ -6429,6 +6497,11 @@ tslib@^2.1.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
+tslib@~2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
+  integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
 tsutils@^3.21.0:
   version "3.21.0"
