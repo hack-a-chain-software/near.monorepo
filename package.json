@@ -8,24 +8,20 @@
     "prestart": "yarn workspace @near/contracts prestart",
     "front:dev": "yarn workspace @near/web dev",
     "front:build": "yarn workspace @near/web build",
-    "cypress:open": "yarn workspace @near/web cypress:open",
-    "contract:build": "yarn workspace @near/contracts build:contract",
+    "contract:yabuild": "yarn workspace @near/contracts build:contract",
     "contract:cargo:tests": "yarn workspace @near/contracts test:rust",
     "contract:lib:tests": "yarn workspace @near/contracts test:lib",
     "postinstall": "yarn husky install"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn prettier --config .prettierrc --write",
-      "git add ."
+      "yarn prettier --config .prettierrc --write"
     ],
     "*.{js,jsx}": [
-      "yarn prettier --config .prettierrc --write",
-      "git add ."
+      "yarn prettier --config .prettierrc --write"
     ],
     "*.rs": [
-      "sh ./format_rust.sh",
-      "git add ."
+      "sh ./format_rust.sh"
     ]
   },
   "husky": {

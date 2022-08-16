@@ -1,0 +1,14 @@
+{
+  "name": "@near/tests",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:install": "cypress install"
+  },
+  "dependencies": {
+    "cypress": "^10.5.0"
+  }
+}
