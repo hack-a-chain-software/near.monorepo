@@ -6,8 +6,9 @@
   "scripts": {
     "start": "yarn workspace @near/web dev",
     "prestart": "yarn workspace @near/contracts prestart",
-    "dev:web": "yarn workspace @near/web dev",
-    "web:build": "yarn workspace @near/web build",
+    "front:dev": "yarn workspace @near/web dev",
+    "front:build": "yarn workspace @near/web build",
+    "cypress:open": "yarn workspace @near/web cypress:open",
     "contract:build": "yarn workspace @near/contracts build:contract",
     "contract:cargo:tests": "yarn workspace @near/contracts test:rust",
     "contract:lib:tests": "yarn workspace @near/contracts test:lib",
