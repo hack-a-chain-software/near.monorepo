@@ -12,17 +12,14 @@
     "prestart": "npm run build:contract:debug && npm run dev:deploy:contract",
     "dev": "nodemon --watch contract/src -e rs --exec \"npm run start\"",
     "test:rust": "npm run build:contract && cargo test -- --nocapture",
-    "test:lib": "npm run build:contract && jest"
+    "test:lib": "npm run build:contract && cd tests-rs && cargo test"
   },
   "devDependencies": {
     "env-cmd": "~10.1.0",
-    "jest": "27",
-    "jest-environment-node": "~26.6.2",
     "near-cli": "~2.1.1",
     "nodemon": "~2.0.3",
     "shelljs": "~0.8.4",
-    "test": "^0.6.0",
-    "ts-jest": "27"
+    "test": "^0.6.0"
   },
   "dependencies": {
     "@near/ts": "*",

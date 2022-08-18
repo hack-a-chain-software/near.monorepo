@@ -1,7 +1,7 @@
 [workspace]
 #Add location of contracts here
 members = [
-    "./contract",
+    "./contract"
 ]
 
 [profile.release]
