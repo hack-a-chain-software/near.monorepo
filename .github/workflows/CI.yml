@@ -45,6 +45,7 @@ jobs:
         with:
           record: false
           browser: chrome
+          working-directory: packages/tests
           build: yarn front build
           start: yarn front dev
 
