@@ -14,7 +14,6 @@
     "@near-wallet-selector/core": "^5.0.3",
     "@near-wallet-selector/near-wallet": "^5.0.3",
     "@near-wallet-selector/sender": "^5.0.3",
-    "@near/common": "*",
     "@near/contracts": "*",
     "autoprefixer": "^10.4.7",
     "buffer": "^6.0.3",
