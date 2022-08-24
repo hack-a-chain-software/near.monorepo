@@ -1,20 +1,4 @@
-import { useState } from "react";
-import { useNearWalletSelector } from "../utils/context/near";
-
-/**
- * @route - '/'
- * @description - This is the landing page for the near application
- * @name Home
- */
 export const Index = () => {
-  const [newGreetingForm, setNewGreetingForm] = useState("");
-
-  const { accountId, toggleModal } = useNearWalletSelector();
-
-  const connectToNear = async () => {
-    toggleModal();
-  };
-
   return (
     <div className="p-4 flex min-h-[70vh] flex-1 flex-col items-center justify-center">
       <div className="overflow-hidden">

@@ -1,8 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
-import { useNearWalletSelector } from "../../../utils/context/near";
+import { useNearWalletSelector } from "@/utils/context/wallet";
 import type { ModuleState } from "@near-wallet-selector/core";
-import { ConnectorItem } from "./submodules/connector-item";
 
 export function WalletSelectorModal(props: {}) {
   const { connection, showModal, toggleModal } = useNearWalletSelector();
@@ -85,11 +84,18 @@ export function WalletSelectorModal(props: {}) {
 
                 <div className="space-y-[12px] flex flex-col">
                   {modules.map((module) => (
-                    <ConnectorItem
-                      {...module.metadata}
+                    <button
                       key={"wallet-selector-modal-module" + module.id}
                       onClick={() => handleWalletClick(module)}
-                    />
+                      className="border border-black rounded-[13px] py-[12px] px-[24px] text-black h-[56px] flex items-center hover:bg-black hover:text-white"
+                    >
+                      <img
+                        src={module.metadata.iconUrl}
+                        className="w-[32px] h-[32px] mr-[12px]"
+                      />
+
+                      {module.metadata.name}
+                    </button>
                   ))}
                 </div>
               </Dialog.Panel>

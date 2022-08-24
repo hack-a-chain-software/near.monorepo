@@ -25,9 +25,9 @@ export type Account = AccountView & {
   account_id: string;
 };
 
-const NearContext = React.createContext<NearContextValue | null>(null);
+const WalletContext = React.createContext<NearContextValue | null>(null);
 
-export const NearWalletSelectorContextProvider: React.FC<
+export const WalletSelectorContextProvider: React.FC<
   PropsWithChildren<Record<any, any>>
 > = ({ children }) => {
   const [accountId, setAccountId] = useState<string>("");
@@ -55,7 +55,6 @@ export const NearWalletSelectorContextProvider: React.FC<
         setupSender({
           iconUrl: "/assets/sender-icon.png",
         }),
-        // setupLedger(),
         setupNearWallet({
           iconUrl: "/assets/near-wallet-icon.png",
         }),
@@ -106,7 +105,7 @@ export const NearWalletSelectorContextProvider: React.FC<
   }
 
   return (
-    <NearContext.Provider
+    <WalletContext.Provider
       value={{
         accounts,
         accountId,
@@ -117,12 +116,12 @@ export const NearWalletSelectorContextProvider: React.FC<
       }}
     >
       {children}
-    </NearContext.Provider>
+    </WalletContext.Provider>
   );
 };
 
 export const useNearWalletSelector = () => {
-  const context = useContext(NearContext);
+  const context = useContext(WalletContext);
 
   if (!context) {
     throw new Error(
