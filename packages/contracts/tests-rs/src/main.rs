@@ -8,7 +8,6 @@ use near_units::parse_near;
 use futures::future::{try_join_all};
 
 mod methods;
-mod tests_locked_jump;
 
 pub use methods::*;
 
