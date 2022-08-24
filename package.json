@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "postinstall": "yarn husky install",
-    "front": "yarn workspace @near/web",
+    "front": "yarn workspace @near/front",
     "tests": "yarn workspace @near/tests",
     "contracts": "yarn workspace @near/contracts"
   },

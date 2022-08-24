@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "cypress:open": "cypress open",
-    "cypress:install": "cypress install"
+    "cypress:install": "cypress install",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "cypress": "^10.5.0"
