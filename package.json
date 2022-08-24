@@ -4,14 +4,9 @@
   "description": "Near Contract and React Monorepo",
   "private": true,
   "scripts": {
-    "start": "yarn workspace @near/web dev",
-    "prestart": "yarn workspace @near/contracts prestart",
-    "front:dev": "yarn workspace @near/web dev",
-    "front:build": "yarn workspace @near/web build",
-    "contract:yabuild": "yarn workspace @near/contracts build:contract",
-    "contract:cargo:tests": "yarn workspace @near/contracts test:rust",
-    "contract:lib:tests": "yarn workspace @near/contracts test:lib",
-    "postinstall": "yarn husky install"
+    "postinstall": "yarn husky install",
+    "front": "yarn workspace @near/web",
+    "contracts": "yarn workspace @near/contracts"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
