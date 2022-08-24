@@ -16,16 +16,16 @@ jobs:
 
       - name: Install Yarn Globally
         run: npm install -g yarn
-      
+
       - name: Installing Dependencies
         run: yarn
 
       - name: Rust Tests
-        run: yarn contract:cargo:tests
+        run: yarn contracts test:rust
 
       - name: Lib Tests
-        run: yarn contract:lib:tests
-      
+        run: yarn contracts test:lib
+
       - name: Web Build
-        run: yarn web:build
+        run: yarn front build
 
