@@ -1,4 +1,4 @@
-import { GreetingContract as Greeting } from "@near/ts";
+import { GreetingContract as Greeting } from "@near/common";
 
 /**
  * @name GreetingContract

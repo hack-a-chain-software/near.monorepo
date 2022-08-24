@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
-import { useNearWalletSelector } from "../../context/near";
+import { useNearWalletSelector } from "../../../utils/context/near";
 import type { ModuleState } from "@near-wallet-selector/core";
 import { ConnectorItem } from "./submodules/connector-item";
 

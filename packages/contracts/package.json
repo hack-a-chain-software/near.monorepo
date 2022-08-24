@@ -22,7 +22,7 @@
     "test": "^0.6.0"
   },
   "dependencies": {
-    "@near/ts": "*",
+    "@near/common": "*",
     "@types/uuid": "^8.3.4",
     "near-api-js": "~0.43.1",
     "near-workspaces": "^2.0.0",
