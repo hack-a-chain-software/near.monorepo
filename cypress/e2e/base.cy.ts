@@ -4,6 +4,6 @@ describe("home", () => {
   });
 
   it("passes", () => {
-    cy.get(".header");
+    cy.get("body", { log: true });
   });
 });
