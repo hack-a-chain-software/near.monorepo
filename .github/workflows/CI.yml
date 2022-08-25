@@ -45,7 +45,9 @@ jobs:
         with:
           record: false
           browser: chrome
+          install-command: yarn --frozen-lockfile --silent
           build: yarn front build
           start: yarn front dev
+          wait-on: 'npx wait-on --timeout 5000 http://localhost:3000'
 
 
