@@ -1,6 +1,5 @@
 describe("hero test", () => {
   it("passes", () => {
-    cy.visit("/");
-    cy.get(".title").contains("Near Monorepo");
+    cy.visit("/").get(".title").contains("Near Monorepo");
   });
 });
