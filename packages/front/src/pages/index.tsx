@@ -2,7 +2,7 @@ export const Index = () => {
   return (
     <div className="p-4 flex min-h-[70vh] flex-1 flex-col items-center justify-center">
       <div className="overflow-hidden">
-        <h1 className="h-auto text-center font-[800] text-4xl tracking-[-0.06em] w3-animate-bottom overflow-hidden">
+        <h1 className="title h-auto text-center font-[800] text-4xl tracking-[-0.06em] w3-animate-bottom overflow-hidden">
           Welcome to the{" "}
           <strong className="w3-animate-bottom">Near Monorepo</strong>
         </h1>
