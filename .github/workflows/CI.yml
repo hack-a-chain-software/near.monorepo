@@ -46,7 +46,7 @@ jobs:
           record: false
           browser: chrome
           install-command: yarn
-          build: yarn && front build
+          build: yarn && yarn front build
           start: yarn && yarn front dev
 
 
