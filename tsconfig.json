@@ -18,7 +18,8 @@
     "skipDefaultLibCheck": true,
     "importsNotUsedAsValues": "error",
     "isolatedModules": true,
-    "typeRoots": ["@types/"]
+    "typeRoots": ["@types/"],
+    "baseUrl": ".",
   },
   "exclude": ["node_modules"],
   "include": ["./packages/**/*"]
