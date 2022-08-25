@@ -43,8 +43,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          record: false
-          browser: chrome
+          record: true
           build: yarn front build
           start: yarn front dev
 
