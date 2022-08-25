@@ -32,7 +32,7 @@ jobs:
         run: yarn contracts test:lib
 
   cypress-run:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
