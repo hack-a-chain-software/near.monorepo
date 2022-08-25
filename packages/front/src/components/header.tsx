@@ -1,6 +1,6 @@
 export function Header() {
   return (
-    <div className="w-screen h-[80px] flex items-center justify-center">
+    <div className="header w-screen h-[80px] flex items-center justify-center">
       <div className="flex px-5 items-center max-w-[1400px] w-[100%] justify-between">
         <svg
           height="20"

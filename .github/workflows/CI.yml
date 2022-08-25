@@ -37,15 +37,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install Yarn Globally
-        run: npm install -g yarn
-
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
           record: false
           browser: chrome
-          build: yarn front build
-          start: yarn front dev
+          build: npm front build
+          start: npm front dev
 
 
