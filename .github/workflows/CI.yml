@@ -40,9 +40,6 @@ jobs:
       - name: Install Yarn Globally
         run: npm install -g yarn
 
-      - name: Chrome
-        uses: cypress-io/github-action@v4
-
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
