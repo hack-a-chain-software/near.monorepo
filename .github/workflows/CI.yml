@@ -32,13 +32,16 @@ jobs:
         run: yarn contracts test:lib
 
   cypress-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Install Yarn Globally
         run: npm install -g yarn
+
+      - name: Chrome
+        uses: cypress-io/github-action@v4
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
