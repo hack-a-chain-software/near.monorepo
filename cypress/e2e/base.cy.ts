@@ -1,6 +1,6 @@
 describe("hero test", () => {
   beforeEach(function () {
-    cy.visit("/");
+    cy.visit("/home");
   });
 
   it("passes", () => {
