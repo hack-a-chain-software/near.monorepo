@@ -6,7 +6,6 @@
   "scripts": {
     "postinstall": "yarn husky install",
     "front": "yarn workspace @near/front",
-    "tests": "yarn workspace @near/tests",
     "contracts": "yarn workspace @near/contracts"
   },
   "lint-staged": {
