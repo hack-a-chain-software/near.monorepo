@@ -4,27 +4,19 @@
   "description": "Near Contract and React Monorepo",
   "private": true,
   "scripts": {
-    "start": "yarn workspace @near/web dev",
-    "prestart": "yarn workspace @near/contracts prestart",
-    "dev:web": "yarn workspace @near/web dev",
-    "web:build": "yarn workspace @near/web build",
-    "contract:build": "yarn workspace @near/contracts build:contract",
-    "contract:cargo:tests": "yarn workspace @near/contracts test:rust",
-    "contract:lib:tests": "yarn workspace @near/contracts test:lib",
-    "postinstall": "yarn husky install"
+    "postinstall": "yarn husky install",
+    "front": "yarn workspace @near/front",
+    "contracts": "yarn workspace @near/contracts"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn prettier --config .prettierrc --write",
-      "git add ."
+      "yarn prettier --config .prettierrc --write"
     ],
     "*.{js,jsx}": [
-      "yarn prettier --config .prettierrc --write",
-      "git add ."
+      "yarn prettier --config .prettierrc --write"
     ],
     "*.rs": [
-      "sh ./format_rust.sh",
-      "git add ."
+      "sh ./format_rust.sh"
     ]
   },
   "husky": {
@@ -52,6 +44,7 @@
     "@types/jest": "^27.5.0",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
+    "cypress": "^10.6.0",
     "eslint": "^8.15.0",
     "eslint-plugin-react": "^7.29.4",
     "husky": "^8.0.1",
